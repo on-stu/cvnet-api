@@ -1,5 +1,5 @@
 // index.ts
-import { CVNetClient } from "./cvnet-client";
+import { CVNetClient } from "./cvnet-client.js";
 
 const client = new CVNetClient();
 
