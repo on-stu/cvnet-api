@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>조명 제어</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="vertxbus.js"></script>
+    <!-- 너가 쓴 커스텀 vertxbus.js -->
+  </head>
+  <body>
+    <h1>조명 제어</h1>
+    <button onclick="controlLight('1')">조명 켜기</button>
+    <button onclick="controlLight('0')">조명 끄기</button>
+
+    <script>
+      const WEBSOCK_URL = "https://sk-51dr2.uasis.com:9099/devicecontrol";
+      const ID = "minsu0523";
+      const PASSWORD = "cvnet";
+      const ADDRESS = "18";
+
+      const eb = new vertx.EventBus(WEBSOCK_URL);
+
+      eb.onopen = function () {
+        console.log("WebSocket 연결 완료");
+
+        eb.login(ID, PASSWORD, function (reply) {
+          console.log("로그인 응답:", reply);
+          if (reply.result) {
+            console.log("로그인 성공");
+            eb.registerHandler(ADDRESS, function (msg) {
+              console.log("서버로부터 수신된 메시지:", msg);
+            });
+          } else {
+            console.error("로그인 실패");
+          }
+        });
+      };
+
+      eb.onclose = function () {
+        console.log("WebSocket 연결 종료");
+      };
+
+      function controlLight(onoff) {
+        if (eb.readyState() !== vertx.EventBus.OPEN) {
+          console.error("연결이 아직 안되었습니다.");
+          return;
+        }
+
+        const payload = {
+          id: ID,
+          remote_addr: "127.0.0.1",
+          request: "control",
+          number: "1",
+          onoff: onoff,
+          brightness: "0",
+          zone: "1",
+        };
+
+        eb.publish(ADDRESS, JSON.stringify(payload));
+        console.log(`조명 ${onoff === "1" ? "켜기" : "끄기"} 명령 전송됨`);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+[
+  {
+    "number": 1,
+    "dimming": 0,
+    "zone": 1,
+    "title": "거실1"
+  },
+  {
+    "number": 2,
+    "dimming": 0,
+    "zone": 1,
+    "title": "거실2"
+  },
+  {
+    "number": 1,
+    "dimming": 0,
+    "zone": 2,
+    "title": "침실1-1"
+  },
+  {
+    "number": 2,
+    "dimming": 0,
+    "zone": 2,
+    "title": "침실1-2"
+  },
+  {
+    "number": 1,
+    "dimming": 0,
+    "zone": 3,
+    "title": "침실2"
+  },
+  {
+    "number": 1,
+    "dimming": 0,
+    "zone": 4,
+    "title": "침실3"
+  },
+  {
+    "number": 1,
+    "dimming": 0,
+    "zone": 5,
+    "title": "주방1"
+  },
+  {
+    "number": 2,
+    "dimming": 0,
+    "zone": 5,
+    "title": "주방2"
+  }
+]
