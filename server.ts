@@ -1,6 +1,6 @@
 // server.ts
 import express from "express";
-import { CVNetClient } from "./cvnet-client.ts";
+import { CVNetClient } from "./cvnet-client";
 
 const app = express();
 const port = 2222;
